@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://mb8p8dx03c2u" path="res://assets/blocks.png" id="1_gh0ne"]
 [ext_resource type="Texture2D" uid="uid://d0qe4gibg7wcd" path="res://assets/car.png" id="2_5q4o7"]
 [ext_resource type="Script" uid="uid://b117nelinoh56" path="res://src/car.gd" id="3_fyndt"]
+[ext_resource type="Script" uid="uid://c6x3vepqmmwll" path="res://src/map.gd" id="3_rlaii"]
+[ext_resource type="Script" uid="uid://bvxa0p087tuhm" path="res://addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" id="5_kmhfv"]
+[ext_resource type="Script" uid="uid://d2bf4p3sp3rwl" path="res://src/ai_controller_2d.gd" id="6_rlaii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cfgd"]
 texture = ExtResource("1_gh0ne")
@@ -72,6 +75,7 @@ script = ExtResource("1_3cfgd")
 [node name="Map" type="TileMapLayer" parent="." unique_id=2087675257]
 tile_map_data = PackedByteArray("AAAAAAkAAAAAAAQAAAABAAkAAAAAAAQAAAACAAkAAAAAAAQAAAADAAkAAAAAAAQAAAAEAAkAAAAAAAQAAAAFAAkAAAAAAAQAAAAGAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAAIAAkAAAAAAAQAAAAJAAkAAAAAAAQAAAAJAAgAAAAAAAQAAAAJAAcAAAAAAAQAAAAJAAYAAAAAAAQAAAAJAAUAAAAAAAQAAAAJAAQAAAAAAAQAAAAJAAMAAAAAAAQAAAAJAAIAAAAAAAQAAAAJAAEAAAAAAAQAAAAJAAAAAAAAAAQAAAAIAAAAAAAAAAQAAAAHAAAAAAAAAAQAAAAGAAAAAAAAAAQAAAAFAAAAAAAAAAQAAAAEAAAAAAAAAAQAAAADAAAAAAAAAAQAAAACAAAAAAAAAAQAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAQAAAAAAAMAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAQAAAAAAAYAAAAAAAQAAAAAAAcAAAAAAAQAAAAAAAgAAAAAAAQAAAAHAAEAAAAAAAEAAAAIAAgAAAAAAAAAAAACAAYAAAAAAAAAAAAIAAIAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAABAAQAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAMAAAAAAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAABAAgAAAAAAAAAAAACAAcAAAAAAAAAAAACAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_yf5fn")
+script = ExtResource("3_rlaii")
 
 [node name="Car" type="CharacterBody2D" parent="." unique_id=1486882384]
 position = Vector2(56, 136)
@@ -85,4 +89,12 @@ sprite_frames = SubResource("SpriteFrames_g4v7s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car" unique_id=1717725940]
 shape = SubResource("CircleShape2D_g4v7s")
 
-[node name="AgentController" type="Node2D" parent="." unique_id=1932897305]
+[node name="RaycastSensor2D" type="Node2D" parent="Car" unique_id=118726615]
+script = ExtResource("5_kmhfv")
+n_rays = 8.0
+ray_length = 20
+metadata/_custom_type_script = "uid://bvxa0p087tuhm"
+
+[node name="AgentController2D" type="Node2D" parent="." unique_id=1921077122]
+script = ExtResource("6_rlaii")
+metadata/_custom_type_script = "uid://xjhyqxpnjyqr"
