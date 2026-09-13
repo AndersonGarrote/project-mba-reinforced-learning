@@ -1,0 +1,88 @@
+[gd_scene format=4 uid="uid://k6oxdfcgymru"]
+
+[ext_resource type="Script" uid="uid://c7ibixwcew7ri" path="res://src/main.gd" id="1_3cfgd"]
+[ext_resource type="Texture2D" uid="uid://mb8p8dx03c2u" path="res://assets/blocks.png" id="1_gh0ne"]
+[ext_resource type="Texture2D" uid="uid://d0qe4gibg7wcd" path="res://assets/car.png" id="2_5q4o7"]
+[ext_resource type="Script" uid="uid://b117nelinoh56" path="res://src/car.gd" id="3_fyndt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cfgd"]
+texture = ExtResource("1_gh0ne")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = "wall"
+0:1/0 = 0
+0:1/0/custom_data_0 = "exit"
+0:2/0 = 0
+0:2/0/custom_data_0 = "clip"
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0/custom_data_0 = "invisible"
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0/custom_data_0 = "outside"
+
+[sub_resource type="TileSet" id="TileSet_yf5fn"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "block_type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_3cfgd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyndt"]
+atlas = ExtResource("2_5q4o7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmhfv"]
+atlas = ExtResource("2_5q4o7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlaii"]
+atlas = ExtResource("2_5q4o7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrjc"]
+atlas = ExtResource("2_5q4o7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyndt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmhfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlaii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mrjc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 7.0
+
+[node name="Main" type="Node2D" unique_id=663578939]
+script = ExtResource("1_3cfgd")
+
+[node name="Map" type="TileMapLayer" parent="." unique_id=2087675257]
+tile_map_data = PackedByteArray("AAAAAAkAAAAAAAQAAAABAAkAAAAAAAQAAAACAAkAAAAAAAQAAAADAAkAAAAAAAQAAAAEAAkAAAAAAAQAAAAFAAkAAAAAAAQAAAAGAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAAIAAkAAAAAAAQAAAAJAAkAAAAAAAQAAAAJAAgAAAAAAAQAAAAJAAcAAAAAAAQAAAAJAAYAAAAAAAQAAAAJAAUAAAAAAAQAAAAJAAQAAAAAAAQAAAAJAAMAAAAAAAQAAAAJAAIAAAAAAAQAAAAJAAEAAAAAAAQAAAAJAAAAAAAAAAQAAAAIAAAAAAAAAAQAAAAHAAAAAAAAAAQAAAAGAAAAAAAAAAQAAAAFAAAAAAAAAAQAAAAEAAAAAAAAAAQAAAADAAAAAAAAAAQAAAACAAAAAAAAAAQAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAQAAAAAAAMAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAQAAAAAAAYAAAAAAAQAAAAAAAcAAAAAAAQAAAAAAAgAAAAAAAQAAAAHAAEAAAAAAAEAAAAIAAgAAAAAAAAAAAACAAYAAAAAAAAAAAAIAAIAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAABAAQAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAMAAAAAAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAABAAgAAAAAAAAAAAACAAcAAAAAAAAAAAACAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_yf5fn")
+
+[node name="Car" type="CharacterBody2D" parent="." unique_id=1486882384]
+position = Vector2(56, 136)
+motion_mode = 1
+script = ExtResource("3_fyndt")
+metadata/_edit_group_ = true
+
+[node name="CarSprite2D" type="AnimatedSprite2D" parent="Car" unique_id=1099853035]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car" unique_id=1717725940]
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="AgentController" type="Node2D" parent="." unique_id=1932897305]
