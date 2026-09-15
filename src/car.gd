@@ -9,10 +9,12 @@ const SPEED = 3000.0
 @onready var raycast_sensor = $"RaycastSensor2D"
 # TODO: Add camera sensor
 
+var agent_action = Vector2.ZERO
 
 func _ready():
 	ai_controller.init(self)
 	raycast_sensor.activate()
+	ai_controller.reset()
 
 func _process(_delta):
 	if get_real_velocity().abs():
@@ -25,7 +27,11 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	var direction = Vector2(
+	var direction
+	if agent_action.abs():
+		direction = agent_action
+	else:
+		direction = Vector2(
 			Input.get_axis("ui_left", "ui_right"),
 			Input.get_axis("ui_up", "ui_down"),
 			)

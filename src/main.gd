@@ -5,13 +5,13 @@ extends Node2D
 
 var DEFAULT_SCENARIO: Array[String] = [
 	"W","W","W","W","W","W","W","W",
+	"W","S"," "," ","W"," "," ","W",
+	"W"," "," ","W","W","W","W","W",
+	"W"," ","W"," "," "," "," ","W",
+	"W"," ","W"," "," ","W"," ","W",
+	"W"," ","W"," ","W","W"," ","W",
 	"W"," "," "," "," "," "," ","W",
-	"W"," ","W","W","W","W"," ","W",
-	"W"," ","W"," "," ","W"," ","W",
-	"W"," ","W"," "," ","W"," ","W",
-	"W"," ","W"," "," ","W"," ","W",
-	"W"," ","W"," "," ","W"," ","W",
-	"W","S","W","W","W","W","E","W",
+	"W","W","W","W","W","W","E","W",
 ]
 
 func _ready():
@@ -31,5 +31,5 @@ func _physics_process(_delta):
 	var non_empty_cell = map.get_cell_atlas_coords(car_coords).y != -1
 	if non_empty_cell:
 		if map.get_cell_tile_data(car_coords).get_custom_data('block_type') == 'exit':
-			print("You Win!")
+			car.ai_controller.reward += 50
 			reset_stage()

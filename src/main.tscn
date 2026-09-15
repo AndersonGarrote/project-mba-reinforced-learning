@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c6x3vepqmmwll" path="res://src/map.gd" id="3_rlaii"]
 [ext_resource type="Script" uid="uid://bvxa0p087tuhm" path="res://addons/godot_rl_agents/sensors/sensors_2d/RaycastSensor2D.gd" id="5_kmhfv"]
 [ext_resource type="Script" uid="uid://d2bf4p3sp3rwl" path="res://src/ai_controller_2d.gd" id="6_rlaii"]
+[ext_resource type="Script" uid="uid://c1eq1hilax6ng" path="res://addons/godot_rl_agents/sync.gd" id="8_5mrjc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cfgd"]
 texture = ExtResource("1_gh0ne")
@@ -92,9 +93,20 @@ shape = SubResource("CircleShape2D_g4v7s")
 [node name="RaycastSensor2D" type="Node2D" parent="Car" unique_id=118726615]
 script = ExtResource("5_kmhfv")
 n_rays = 8.0
-ray_length = 20
+ray_length = 15
+cone_width = 180.0
 metadata/_custom_type_script = "uid://bvxa0p087tuhm"
 
-[node name="AgentController2D" type="Node2D" parent="." unique_id=1921077122]
+[node name="MainCamera" type="Camera2D" parent="." unique_id=1371592877]
+anchor_mode = 0
+zoom = Vector2(4, 4)
+
+[node name="AgentController2D" type="Node2D" parent="." unique_id=1921077122 groups=["AGENT"]]
 script = ExtResource("6_rlaii")
 metadata/_custom_type_script = "uid://xjhyqxpnjyqr"
+
+[node name="Sync" type="Node" parent="." unique_id=1552516357]
+script = ExtResource("8_5mrjc")
+control_mode = 2
+onnx_model_path = "res://stable_baselines3/model3.onnx"
+metadata/_custom_type_script = "uid://c1eq1hilax6ng"

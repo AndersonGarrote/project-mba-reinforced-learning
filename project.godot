@@ -12,13 +12,13 @@ config_version=5
 
 config/name="project-mba-reinforced-learning"
 run/main_scene="uid://k6oxdfcgymru"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=160
-window/size/viewport_height=160
+window/size/viewport_width=640
+window/size/viewport_height=640
 window/size/initial_position_type=5
 window/stretch/mode="canvas_items"
 

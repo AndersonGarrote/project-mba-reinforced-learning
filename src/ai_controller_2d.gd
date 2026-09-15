@@ -20,9 +20,8 @@ func _update_reward():
 	if exit_distance < closest_exit_distance:
 		add_reward += closest_exit_distance - exit_distance
 		closest_exit_distance = exit_distance
-	add_reward /= 100.0
 	
-	reward += add_reward
+	reward += add_reward/100
 
 
 func get_reward():

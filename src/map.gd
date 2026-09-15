@@ -23,3 +23,4 @@ func setup_stage(scenario: Array[String], car: CharacterBody2D):
 				exit_position = map_to_local(Vector2i(i+1,j+1))
 	
 	car.position = start_position
+	car.ai_controller.reset()
